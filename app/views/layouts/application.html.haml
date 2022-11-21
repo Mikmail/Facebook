@@ -1,5 +1,5 @@
 !!!
-%html
+%html.bg-gray-100
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Facebook
@@ -12,6 +12,12 @@
   %body
 
     
-
+    %nav.flex.bg-blue-600.p-4.font-bold.text-white
+      = link_to root_path do
+        %h2.left-0.hover:opacity-50
+          Facebook
+      - if current_user
+        .absolute.right-1.hover:opacity-50
+          = link_to "Sign Out", destroy_user_session_path, method: :delete
 
     = yield

@@ -1,0 +1,26 @@
+.grid.grid-cols-2.place-content-center.text-center
+  %div.m-40
+    %h1.text-5xl.font-bold.text-blue-600
+      facebook
+    %p.text-2xl.w-96
+      Connect with friends and the world around you on Facebook.
+  .border-2.rounded-md.w-96.mt-40.shadow-md.bg-white
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email"
+      .field
+        %br/
+        = f.password_field :password, autocomplete: "current-password", placeholder: "Password"
+      .actions
+      = button_tag(type: "submit") do
+        .bg-blue-600.text-white.rounded-md.text-xl.px-28.w-90.m-5.hover:bg-blue-800.cursor-pointer
+          Log in
+    .text-blue-500.hover:underline
+      = link_to "Forgot your password?", new_password_path(resource_name)
+      %div.border-b.m-5
+    = link_to new_registration_path(resource_name) do
+      .bg-green-500.text-white.rounded-md.text-xl.px-24.m-5.hover:bg-green-800.cursor-pointer
+        Create new account
+    
+
