@@ -1,0 +1,30 @@
+.grid.text-center
+  %h1= @user.email
+
+  - if current_user.following?(@user) && current_user != @user
+    = button_to "Unfollow", unfollow_path(@user)
+  - elsif current_user.sent_follow_request_to?(@user)
+    = button_to cancel_path(@user) do
+      .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+        Cancel friend request
+  - elsif current_user != @user
+    = button_to follow_path(@user) do
+      .bg-blue-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+        Send friend request
+  %br 
+  - if current_user == @user
+    = form_with model: @post do |f| 
+
+      = f.text_field :title, placeholder: "What's on your mind?"
+
+      = button_tag(type: "submit") do
+        .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer
+          Post
+  %hr.m-5
+  %h2.text-2xl.font-bold Friends:
+  %div.flex.items-center.m-5
+    - current_user.followers.each do |user|
+      = link_to user.email, user_path(user)
+      .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.m-5.cursor-pointer
+        \#{button_to "Unfriend", unfollow_path(user)}
+  %hr.m-5

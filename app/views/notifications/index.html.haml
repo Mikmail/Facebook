@@ -1,0 +1,9 @@
+.grid.text-center
+  - current_user.follow_requests.each do |request|
+    = request.followerable.email
+    wants to be friends with you
+    .bg-blue-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.m-5.cursor-pointer
+      \#{button_to "Accept", accept_path(request.followerable)}
+    .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.m-5.cursor-pointer
+      #{button_to "Decline", decline_path(request.followerable)}
+  

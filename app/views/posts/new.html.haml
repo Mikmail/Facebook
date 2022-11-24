@@ -1,0 +1,7 @@
+= form_with model: @post do |f| 
+
+  = f.text_field :title, placeholder: "What's on your mind?"
+
+  = button_tag(type: "submit") do
+    .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer
+      Post
