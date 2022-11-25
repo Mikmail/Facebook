@@ -1,15 +1,40 @@
 .grid.gap-4.p-2.text-center
   %h1.text-2xl Last posts
   - @posts.order("updated_at DESC").each do |post|
-    .w-96.bg-white.shadow-md.place-self-center.mt-5
-      %h1.m-2  
-        = post.user.email
-      
-      %p
-        = link_to post.title, post 
+    %h1.font-bold.ml-3
+      = link_to post.user.email, user_path(post.user.id)
+    .w-96.bg-white.shadow-md.place-self-center
+      .flex
+        %p.ml-2 Likes: #{post.likes.count}
+      %p.m-2
+        = post.title
       %hr.m-2
-      %p 
-        = render "comments/form"
+      %p
+        - post.comments.each do |comment|
+          .grid.text-center
+              
+            = comment.created_time_formatted
+            
+            .flex
+              .font-bold.ml-2
+                = comment.commenter
+              
+              .ml-3
+                = comment.body
+            %hr.m-2
 
-
-= console 
+      .flex.m-5
+        %p
+          = link_to post do
+            .bg-green-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+              Comment
+        %p 
+          - like = post.find_like(current_user)
+          - if post.liked_by?(current_user)
+            = button_to post_like_path(like, post, like: {post_id: post.id }), method: :delete do
+              .bg-blue-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+                Like
+          - else 
+            = button_to post_likes_path(post, like: {post_id: post.id }), method: :post do
+              .bg-blue-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+                Like

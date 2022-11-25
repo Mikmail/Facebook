@@ -8,6 +8,7 @@ class User < ApplicationRecord
   #gravtastic
 
   has_many :posts
+  has_many :likes, dependent: :destroy
 
   def unfollow(user)
     followerable_relationships.where(followable_id: user.id).destroy_all
