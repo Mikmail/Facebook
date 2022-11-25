@@ -1,0 +1,7 @@
+.grid.gap-4.p-2.text-center
+  = form_with model: @comment do |f| 
+    = f.hidden_field :commenter, value: current_user.email
+
+    = f.text_field :body, placeholder: "Write your comment"
+
+    = f.submit "Comment"

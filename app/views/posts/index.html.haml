@@ -1,7 +1,15 @@
 .grid.gap-4.p-2.text-center
-  - @posts.each do |post|
-    %h1  
-      = post.title 
-    %p
-      = post.body
-    %p
+  %h1.text-2xl Last posts
+  - @posts.order("updated_at DESC").each do |post|
+    .w-96.bg-white.shadow-md.place-self-center.mt-5
+      %h1.m-2  
+        = post.user.email
+      
+      %p
+        = link_to post.title, post 
+      %hr.m-2
+      %p 
+        = render "comments/form"
+
+
+= console 

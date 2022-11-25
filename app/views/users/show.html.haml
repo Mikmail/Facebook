@@ -1,5 +1,8 @@
 .grid.text-center
-  %h1= @user.email
+  %h1 
+    = @user.password.to_s
+  %p
+    = @user.email
 
   - if current_user.following?(@user) && current_user != @user
     = button_to "Unfollow", unfollow_path(@user)
@@ -13,12 +16,12 @@
         Send friend request
   %br 
   - if current_user == @user
-    = form_with model: @post do |f| 
+    = form_with model: Post.new, url: posts_path do |f| 
 
       = f.text_field :title, placeholder: "What's on your mind?"
 
       = button_tag(type: "submit") do
-        .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer
+        .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer.shadow-lg
           Post
   %hr.m-5
   %h2.text-2xl.font-bold Friends:
@@ -28,3 +31,7 @@
       .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.m-5.cursor-pointer
         \#{button_to "Unfriend", unfollow_path(user)}
   %hr.m-5
+  %h1.text-2xl All posts
+  - current_user.posts.each do |post| 
+    %p.bg-white.m-5.rounded-md.shadow-md.py-2
+      = post.title
