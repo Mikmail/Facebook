@@ -1,3 +1,21 @@
-- @users.each do |user| 
-  = user.email 
-  
+.grid
+  - @users.each do |user| 
+    - next if user == current_user
+    %div.font-bold.rounded-md.bg-white.shadow-md.m-2.w-96.py-2.flex.m-2.place-self-center
+      %p 
+        = image_tag user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-6"
+      %p.ml-2
+        = link_to user.email, user_path(user.id)
+      %p.ml-5
+        - if current_user.following?(user) && current_user != user
+          = button_to unfollow_path(user) do
+            .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+              Unfollow
+        - elsif current_user.sent_follow_request_to?(user)
+          = button_to cancel_path(user) do
+            .bg-blue-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+              Cancel request
+        - elsif current_user != user
+          = button_to follow_path(user) do
+            .bg-green-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+              Send friend request

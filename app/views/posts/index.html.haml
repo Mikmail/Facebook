@@ -1,11 +1,16 @@
 .grid.gap-4.p-2.text-center
   %h1.text-2xl Last posts
   - @posts.order("updated_at DESC").each do |post|
-    %h1.font-bold.ml-3
-      = link_to post.user.email, user_path(post.user.id)
-    .w-96.bg-white.shadow-md.place-self-center
+    %div.flex.place-self-center
+      %p 
+        = image_tag post.user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-8"
+      %h1.font-bold.ml-3
+        = link_to post.user.email, user_path(post.user.id)
+    .w-96.bg-white.shadow-md.place-self-center.rounded-md
       .flex
         %p.ml-2 Likes: #{post.likes.count}
+        %p.ml-5
+          = post.created_time_formatted
       %p.m-2
         = post.title
       %hr.m-2
@@ -16,25 +21,26 @@
             = comment.created_time_formatted
             
             .flex
-              .font-bold.ml-2
-                = comment.commenter
+              %p.ml-2
+                = image_tag comment.commenter.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-6"
+              .font-bold.ml-3.text-sm
+                = link_to comment.commenter.email, user_path(comment.commenter.id)
               
-              .ml-3
+              .ml-2.absolute.mt-5
                 = comment.body
-            %hr.m-2
 
-      .flex.m-5
+      .flex.m-5.mt-8
         %p
           = link_to post do
-            .bg-green-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+            .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
               Comment
         %p 
           - like = post.find_like(current_user)
           - if post.liked_by?(current_user)
             = button_to post_like_path(like, post, like: {post_id: post.id }), method: :delete do
               .bg-blue-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
-                Like
+                Liked
           - else 
             = button_to post_likes_path(post, like: {post_id: post.id }), method: :post do
-              .bg-blue-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+              .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
                 Like

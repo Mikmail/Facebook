@@ -1,0 +1,13 @@
+= form_with model: @profile do |form|
+  .container.w-25.mt-4
+    %h2.mb-3 Personal Info
+    = form.label :name, class: "form-label"
+    = form.text_field :name, class: "form-control mb-3"
+    = form.label :gender, class: "form-label"
+    = form.text_field :gender, class: "form-control mb-3"
+    = form.label :age, class: "form-label"
+    = form.text_field :age, class: "form-control mb-3"
+    = form.label :location, class: "form-label"
+    = form.text_field :location, class: "form-control mb-3"
+    = form.submit "Save", class: "btn btn-primary"
+    = link_to "Cancel", :back, class: "btn btn-outline-primary ms-2"

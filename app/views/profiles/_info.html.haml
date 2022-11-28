@@ -1,0 +1,15 @@
+.d-flex.justify-content-between.mb-3{:style => "word-wrap:break-word; gap: 10px"}
+  %b Name
+  = user.profile.display_name
+.d-flex.justify-content-between.mb-3{:style => "word-wrap:break-word; gap: 10px"}
+  %b Gender
+  = user.profile.display_gender
+.d-flex.justify-content-between.mb-3{:style => "word-wrap:break-word; gap: 10px"}
+  %b Age
+  = user.profile.display_age
+.d-flex.justify-content-between.mb-3{:style => "word-wrap:break-word; gap: 10px"}
+  %b Location
+  = user.profile.display_location
+.d-flex.justify-content-between.mb-3{:style => "word-wrap:break-word; gap: 10px"}
+  %b Joined
+  = @user.created_time_formatted

@@ -1,24 +1,39 @@
 .grid.text-center
+  %p.place-self-center
+    = image_tag @user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-100"
   %h1 
     = @user.password.to_s
   %p
     = @user.email
+  .d-flex.flex-column
+    - if @user.profile
+      = render "profiles/info", user: @user
+    - else
+      = render "profiles/empty"
+  %p 
+  - if @user == current_user
+    - if current_user.profile
+      = button_to "Edit profile", edit_profile_path(current_user), method: "get", class: "bg-blue-500 text-white rounded-md shadow-md w-28"
+    - elsif @user.profile.nil?
+      = button_to "Add profile info", new_profile_path(@user), method: "get", class: "bg-green-600 text-white rounded-md shadow-md w-32" 
 
   - if current_user.following?(@user) && current_user != @user
-    = button_to "Unfollow", unfollow_path(@user)
+    = button_to unfollow_path(@user) do
+      .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+        Unfollow
   - elsif current_user.sent_follow_request_to?(@user)
     = button_to cancel_path(@user) do
-      .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+      .bg-blue-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
         Cancel friend request
   - elsif current_user != @user
     = button_to follow_path(@user) do
-      .bg-blue-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+      .bg-green-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
         Send friend request
   %br 
   - if current_user == @user
     = form_with model: Post.new, url: posts_path do |f| 
 
-      = f.text_field :title, placeholder: "What's on your mind?"
+      = f.text_field :title, placeholder: "What's on your mind?", class: "rounded-md bg-white border-none shadow-md mr-5"
 
       = button_tag(type: "submit") do
         .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer.shadow-lg

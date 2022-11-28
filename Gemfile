@@ -7,6 +7,12 @@ gem "haml-rails"
 
 gem "devise"
 
+gem 'gravtastic'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-rails_csrf_protection'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7'

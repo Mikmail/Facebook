@@ -21,3 +21,6 @@
     = link_to new_session_path(resource_name) do
       .text-blue-500.hover:underline.m-5
         Already have a user?
+    = link_to user_facebook_omniauth_authorize_path, method: :post do
+      .text-blue-500.hover:underline
+        Sign in with Facebook

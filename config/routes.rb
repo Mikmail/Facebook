@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :likes 
   end
 
+  resources :profiles
+
   root "posts#index"
 
   get '/notifications/index', to: 'notifications#index', as: "notifications"
