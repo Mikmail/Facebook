@@ -1,10 +1,6 @@
 .grid.text-center
-  %p.place-self-center
+  %h1.items-center.text-center.place-self-center
     = image_tag @user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-100"
-  %h1 
-    = @user.password.to_s
-  %p
-    = @user.email
   .d-flex.flex-column
     - if @user.profile
       = render "profiles/info", user: @user
@@ -27,7 +23,7 @@
         Cancel friend request
   - elsif current_user != @user
     = button_to follow_path(@user) do
-      .bg-green-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50
+      .bg-green-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.mb-5
         Send friend request
   %br 
   - if current_user == @user

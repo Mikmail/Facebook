@@ -1,13 +1,12 @@
-= form_with model: @profile do |form|
-  .container.w-25.mt-4
+.grid.text-center.rounded-md.shadow-md
+  = form_with model: @profile do |form|
     %h2.mb-3 Personal Info
-    = form.label :name, class: "form-label"
-    = form.text_field :name, class: "form-control mb-3"
-    = form.label :gender, class: "form-label"
-    = form.text_field :gender, class: "form-control mb-3"
-    = form.label :age, class: "form-label"
-    = form.text_field :age, class: "form-control mb-3"
-    = form.label :location, class: "form-label"
-    = form.text_field :location, class: "form-control mb-3"
-    = form.submit "Save", class: "btn btn-primary"
-    = link_to "Cancel", :back, class: "btn btn-outline-primary ms-2"
+    = form.text_field :name, placeholder: "What's your name?", class: "rounded-md shadow-md border-none m-5"
+    = form.text_field :gender, placeholder: "What's your gender?", class: "rounded-md shadow-md border-none m-5"
+    = form.text_field :age, placeholder: "How old are you?", class: "rounded-md shadow-md border-none m-5"
+    = form.text_field :location, placeholder: "What's your location?", class: "rounded-md shadow-md border-none m-5"
+    %p  
+      = button_tag(type: "submit") do
+        .bg-green-500.text-white.rounded-md.shadow-md.m-5.px-8.hover:opacity-50
+          Save
+    = link_to "Cancel", :back, class: "bg-blue-500 rounded-md shadow-md m-5 text-white px-8 hover:opacity-50"
