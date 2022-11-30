@@ -44,5 +44,15 @@
   %hr.m-5
   %h1.text-2xl All posts
   - current_user.posts.each do |post| 
-    %p.bg-white.m-5.rounded-md.shadow-md.py-2
-      = post.title
+    %p.bg-white.m-2.rounded-md.shadow-md.py-2
+      = link_to post.title, post
+    %p 
+    - like = post.find_like(current_user)
+    - if post.liked_by?(current_user)
+      = button_to post_like_path(like, post, like: {post_id: post.id }), method: :delete do
+        .bg-blue-500.rounded-md.shadow-md.text-white.hover:opacity-50.cursor-pointer.w-32.ml-5
+          Liked
+    - else 
+      = button_to post_likes_path(post, like: {post_id: post.id }), method: :post do
+        .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
+          Like
