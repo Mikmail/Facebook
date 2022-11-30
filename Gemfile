@@ -13,7 +13,9 @@ gem 'omniauth-facebook'
 
 gem 'omniauth-rails_csrf_protection'
 
-gem 'net-smtp'
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 group :production do 
   gem "pg", "~> 1.4"
