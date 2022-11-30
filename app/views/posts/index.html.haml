@@ -6,7 +6,7 @@
         = image_tag post.user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-8"
       %h1.font-bold.ml-3
         = link_to post.user.email, user_path(post.user.id)
-    .w-96.bg-white.shadow-md.place-self-center.rounded-md
+    .w-96.bg-white-100.shadow-md.place-self-center.rounded-md
       .flex
         %p.ml-2 Likes: #{post.likes.count}
         %p.ml-5
@@ -32,7 +32,7 @@
       .flex.m-5.mt-8
         %p
           = link_to post do
-            .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
+            .bg-white-100.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
               Comment
         %p 
           - like = post.find_like(current_user)
@@ -42,5 +42,5 @@
                 Liked
           - else 
             = button_to post_likes_path(post, like: {post_id: post.id }), method: :post do
-              .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
+              .bg-white-100.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
                 Like

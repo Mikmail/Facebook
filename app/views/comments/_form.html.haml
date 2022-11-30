@@ -2,7 +2,7 @@
   = form_with model: [ @post, @post.comments.build ] do |f| 
     = f.hidden_field :commenter_id, value: current_user.id
 
-    = f.text_field :body, placeholder: "Write your comment", class: "rounded-md bg-white border-none shadow-md"
+    = f.text_field :body, placeholder: "Write your comment", class: "rounded-md bg-white-100 border-none shadow-md"
 
     = button_tag(type: "submit") do
       .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer.shadow-lg.m-5

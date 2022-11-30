@@ -44,7 +44,7 @@
   %hr.m-5
   %h1.text-2xl All posts
   - current_user.posts.each do |post| 
-    %p.bg-white.m-2.rounded-md.shadow-md.py-2
+    %p.bg-white-100.m-2.rounded-md.shadow-md.py-2
       = link_to post.title, post
     %p 
     - like = post.find_like(current_user)
@@ -54,5 +54,5 @@
           Liked
     - else 
       = button_to post_likes_path(post, like: {post_id: post.id }), method: :post do
-        .bg-white.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
+        .bg-white-100.text-blue-600.rounded-md.shadow-md.cursor-pointer.w-32.ml-5.hover:bg-blue-500.hover:text-white
           Like
