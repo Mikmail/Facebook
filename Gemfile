@@ -15,6 +15,10 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'net-smtp'
 
+group :production do 
+  gem "pg", "~> 1.4"
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7'
 # Use sqlite3 as the database for Active Record
@@ -74,3 +78,5 @@ gem "followability", "~> 1.1"
 gem "cssbundling-rails", "~> 1.1"
 
 gem "jsbundling-rails", "~> 1.0"
+
+
