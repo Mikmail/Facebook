@@ -12,8 +12,9 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^4.11.1",
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+    "webpack-dev-server": "^4.11.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
   }
 }
