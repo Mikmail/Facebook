@@ -1,4 +1,12 @@
 .grid.gap-4.p-2.text-center
+  - if current_user
+    = form_with model: Post.new, url: posts_path do |f| 
+
+      = f.text_field :title, placeholder: "What's on your mind?", class: "rounded-md bg-white border-none shadow-md mr-5"
+
+      = button_tag(type: "submit") do
+        .px-3.py.bg-blue-500.text-white.rounded-md.hover:opacity-50.cursor-pointer.shadow-lg
+          Post
   %h1.text-2xl Last posts
   - @posts.order("updated_at DESC").each do |post|
     %div.flex.place-self-center
