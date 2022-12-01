@@ -10,8 +10,8 @@ gem "devise"
 gem 'gravtastic'
 
 gem 'omniauth-facebook'
-
 gem 'omniauth-rails_csrf_protection'
+gem 'activerecord-session_store'
 
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
