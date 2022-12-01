@@ -2,7 +2,7 @@
   - @users.each do |user| 
     - next if current_user.following?(user) && current_user != user
     - next if user == current_user
-    %div.font-bold.rounded-md.bg-white-100.shadow-md.m-2.w-96.py-2.flex.m-2.place-self-center
+    %div.font-bold.rounded-md.bg-white.shadow-md.m-2.w-96.py-2.flex.m-2.place-self-center
       %p 
         = image_tag user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-6"
       %p.ml-2
