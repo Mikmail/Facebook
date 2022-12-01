@@ -5,7 +5,7 @@
     %p.text-2xl.w-96
       Connect with friends and the world around you on Facebook.
   .border-2.rounded-md.w-96.mt-40.shadow-md.bg-white-100
-    = form_for(resource, as: resource_name, url: new_user_registration_path(resource_name)) do |f|
+    = form_for(resource, as: resource_name, url: user_registration_path) do |f|
       = render "devise/shared/error_messages", resource: resource
       .field
         %br/
