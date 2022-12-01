@@ -42,7 +42,7 @@
       .bg-red-500.rounded-md.shadow-md.text-white.px-4.hover:opacity-50.m-5.cursor-pointer
         \#{button_to "Unfriend", unfollow_path(user)}
   %hr.m-5
-  %h1.text-2xl All posts
+  %h1.text-2xl.font-bold All posts:
   - current_user.posts.each do |post| 
     %p.bg-white.m-2.rounded-md.shadow-md.py-2
       = link_to post.title, post

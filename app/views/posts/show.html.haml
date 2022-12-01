@@ -1,10 +1,35 @@
 .grid.gap-4.p-2.text-center
-  %h1.text-2xl Last posts
-  .w-96.bg-white.shadow-md.place-self-center.mt-5
-    %h1.m-2.font-bold
-      = @post.user.email
-    %p
-      = @post.title 
-    %hr.m-2
+  %div.flex.place-self-center
     %p 
+      = image_tag @post.user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-8"
+    %h1.font-bold.ml-3
+      - if @post.user.profile
+        = link_to @post.user.profile.name, user_path(@post.user.id)
+      - else 
+        = link_to @post.user.email, user_path(@post.user.id)
+  .w-96.bg-white.shadow-md.place-self-center.rounded-md
+    .flex
+      %p.ml-2 Likes: #{@post.likes.count}
+      %p.ml-5
+        = @post.created_time_formatted
+    %p.m-2
+      = @post.title
+    %hr.m-2
+    %p
+      - @post.comments.each do |comment|
+        .grid.text-center.mt-5
+            
+          = comment.created_time_formatted
+          
+          .flex
+            %p.ml-2
+              = image_tag comment.commenter.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-6"
+            .font-bold.ml-3.text-sm
+              = link_to comment.commenter.email, user_path(comment.commenter.id)
+            
+            .ml-2.absolute.mt-5
+              = comment.body
+  
+    %hr.m-5.mt-8
+    %p
       = render 'comments/form'
