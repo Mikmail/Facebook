@@ -13,7 +13,7 @@
       %p 
         = image_tag post.user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-8"
       %h1.font-bold.ml-3
-        - if post.user.profile
+        - if post.user.profile && post.user.profile.name
           = link_to post.user.profile.name, user_path(post.user.id)
         - else 
           = link_to post.user.email, user_path(post.user.id)
@@ -35,7 +35,10 @@
               %p.ml-2
                 = image_tag comment.commenter.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-6"
               .font-bold.ml-3.text-sm
-                = link_to comment.commenter.email, user_path(comment.commenter.id)
+                - if comment.commenter.profile && comment.commenter.profile.name 
+                  = link_to comment.commenter.profile.name, user_path(comment.commenter.id)
+                - else
+                  = link_to comment.commenter.email, user_path(comment.commenter.id)
               
               .ml-2.absolute.mt-5
                 = comment.body
