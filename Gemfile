@@ -9,6 +9,8 @@ gem "devise"
 
 gem 'gravtastic'
 
+gem 'sendgrid-ruby'
+
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'activerecord-session_store'

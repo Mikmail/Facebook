@@ -14,16 +14,19 @@
     
     %nav.flex.bg-blue-600.p-4.font-bold.text-white
       = link_to root_path do
-        %p.left-0.hover:opacity-50
+        %p.hover:opacity-50
           Facebook
       - if current_user
-        .absolute.right-5.hover:opacity-50
-          = link_to "Sign Out", destroy_user_session_path, method: :delete
+        .absolute.right-5.flex
+          .hover:opacity-50
+            = link_to "Sign Out", destroy_user_session_path, method: :delete
+          .ml-5
+            = image_tag current_user.gravatar_url(default: 'monsterid'), class: "gravatar rounded-full w-8"
         .ml-4.hover:opacity-50.mr-4
           = link_to "User Page", user_path(current_user.id)
         .hover:opacity-50.mr-4 
           = link_to "Find friends", users_path
-        .left-5.hover:opacity-50
+        .hover:opacity-50
           - if current_user.follow_requests.count > 0
             = link_to notifications_path do 
               .bg-yellow-400.rounded-md
