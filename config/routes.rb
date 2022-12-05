@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'info/index'
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth'}
 
   resources :posts do
     resources :comments
     resources :likes 
   end
+
+  resources :info, only: [:index]
 
   resources :profiles
 
