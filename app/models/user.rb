@@ -30,4 +30,11 @@ class User < ApplicationRecord
     created_at.strftime("%b %-d, %Y")
   end
 
+  after_create :welcome_send 
+
+  def welcome_send 
+    WelcomeMailer.welcome_send(self).deliver
+    redirect_to root_path, alert: "Thanks for signing up"
+  end 
+
 end
